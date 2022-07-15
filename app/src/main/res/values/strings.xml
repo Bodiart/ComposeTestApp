@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ComposeTestApp</string>
+
+    <string name="contact_list_title">Contact list</string>
+    <string name="contact_list_get_failed">Failed to get contact list</string>
+
+</resources>
