@@ -7,11 +7,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Button
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -75,6 +72,10 @@ class ContactListScreen : BaseView<
                 Text(text = "Chart")
             }
 
+            MyCheckBox()
+
+            HelloContent()
+
             Box(
                 contentAlignment = Alignment.Center,
                 modifier = Modifier.fillMaxSize()
@@ -91,6 +92,29 @@ class ContactListScreen : BaseView<
 
                 AnimatedFullScreenProgress(contactListState == ContactListViewState.ContactListState.Loading)
             }
+        }
+    }
+
+    @Composable
+    fun MyCheckBox() {
+        var isChecked by remember { mutableStateOf(false) }
+        Checkbox(checked = isChecked, onCheckedChange = { isChecked = !isChecked })
+    }
+
+    @Composable
+    fun HelloContent() {
+        var content by remember { mutableStateOf("") }
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = "Hello!",
+                modifier = Modifier.padding(bottom = 8.dp),
+                style = MaterialTheme.typography.h5
+            )
+            OutlinedTextField(
+                value = content,
+                onValueChange = { content = it },
+                label = { Text("Name") }
+            )
         }
     }
 

@@ -3,6 +3,7 @@ package com.defense.composetestapp.ui.base
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.navigation.NavController
 import kotlinx.coroutines.flow.collectLatest
 
@@ -56,6 +57,7 @@ abstract class BaseView<
 
     @Composable
     private fun ScreenRoot() {
-        Content(viewModel.viewStateFlow.collectAsState().value)
+        val viewState by viewModel.viewStateFlow.collectAsState()
+        Content(viewState)
     }
 }
