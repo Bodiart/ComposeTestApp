@@ -21,13 +21,13 @@ abstract class BaseViewModel<VS : ViewState, VE : ViewEvent, VA : ViewAction>(
 
     protected var lastViewState: VS = initialViewState
 
-    protected val mutableViewStateFlow = MutableStateFlow(initialViewState)
+    protected val mutableViewStateFlow = MutableStateFlow(initialViewState) // StateFlow - drop olds and receive only new state
     val viewStateFlow = mutableViewStateFlow.asStateFlow()
 
-    protected val eventChannel = Channel<VE?>(Channel.BUFFERED)
+    protected val eventChannel = Channel<VE?>(Channel.BUFFERED) // Channel - all events should be posted, old and new ones, one subscriber
     val eventFlow = eventChannel.receiveAsFlow()
 
-    protected val actionChannel = Channel<VA>(Channel.BUFFERED)
+    protected val actionChannel = Channel<VA>(Channel.BUFFERED) // Channel - all events should be posted, old and new ones, one subscriber
 
 
     init {

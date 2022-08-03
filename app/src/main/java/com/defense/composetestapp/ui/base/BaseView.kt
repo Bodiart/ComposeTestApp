@@ -7,6 +7,7 @@ import androidx.compose.runtime.getValue
 import androidx.navigation.NavController
 import kotlinx.coroutines.flow.collectLatest
 
+@Deprecated("Use compose func")
 abstract class BaseView<
         VM: BaseViewModel<VS, VE, VA>,
         VS: ViewState,
