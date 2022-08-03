@@ -55,7 +55,7 @@ class ContactDetailScreen : BaseView<
     }
 
     @Composable
-    private fun ScreenContent(state: ContactDetailViewState, viewModel: ContactDetailViewModel) {
+    private fun ScreenContent(state: ContactDetailViewState) {
         Column {
             AsyncImage(
                 model = state.imageUrl,

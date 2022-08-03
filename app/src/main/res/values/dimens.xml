@@ -4,4 +4,7 @@
     <dimen name="default_icon_size">24dp</dimen>
     <dimen name="default_margin_half">8dp</dimen>
     <dimen name="contact_list_item_elevation">6dp</dimen>
+    <dimen name="contact_list_item_elevation_drag">16dp</dimen>
+    <dimen name="contact_list_item_corners">4dp</dimen>
+    <dimen name="contact_list_item_corners_drag">14dp</dimen>
 </resources>
