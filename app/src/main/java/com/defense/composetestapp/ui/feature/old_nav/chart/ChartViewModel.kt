@@ -1,5 +1,6 @@
-package com.defense.composetestapp.ui.feature.chart
+package com.defense.composetestapp.ui.feature.old_nav.chart
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.defense.composetestapp.data.entity.data.Candle
 import com.defense.composetestapp.data.usecase.QuotesGetUseCase
@@ -11,20 +12,20 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ChartViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle,
     private val quotesGetUseCase: QuotesGetUseCase
-) : BaseViewModel<ChartViewState, ChartViewEvent, ChartViewAction>() {
+) : BaseViewModel<ChartViewState, ChartViewEvent, ChartViewAction>(savedStateHandle) {
 
     private var chartCandles = listOf<Candle>()
 
     init {
+        mutableViewStateFlow.value = ChartViewState(
+            isProgressVisible = true,
+            isChartVisible = false,
+            chart = listOf()
+        )
         setupChart()
     }
-
-    override fun createInitialState() = ChartViewState(
-        isProgressVisible = true,
-        isChartVisible = false,
-        chart = listOf()
-    )
 
     override fun handleAction(action: ChartViewAction) {
     }

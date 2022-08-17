@@ -1,7 +1,8 @@
-package com.defense.composetestapp.ui.feature.chart
+package com.defense.composetestapp.ui.feature.old_nav.chart
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.defense.composetestapp.ui.base.BaseView
 import com.defense.composetestapp.ui.custom.AnimatedFullScreenProgress
 import com.defense.composetestapp.ui.custom.chart.MarketChart
@@ -12,7 +13,7 @@ class ChartScreen : BaseView<ChartViewModel, ChartViewState, ChartViewEvent, Cha
     override fun getViewModelInstance(): ChartViewModel = hiltViewModel()
 
     @Composable
-    override fun Content(state: ChartViewState) {
+    override fun Content(state: ChartViewState, navController: NavController) {
         AnimatedFullScreenProgress(isVisible = state.isProgressVisible)
         if (state.isChartVisible) {
             MarketChart(candles = state.chart)

@@ -6,10 +6,10 @@ import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavController
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
-import com.defense.composetestapp.ui.feature.chart.ChartScreen
-import com.defense.composetestapp.ui.feature.contact_detail.ContactDetailArgs
-import com.defense.composetestapp.ui.feature.contact_detail.ContactDetailScreen
-import com.defense.composetestapp.ui.feature.contact_list.ContactListScreen
+import com.defense.composetestapp.ui.feature.old_nav.chart.ChartScreen
+import com.defense.composetestapp.ui.feature.old_nav.contact_detail.ContactDetailArgs
+import com.defense.composetestapp.ui.feature.old_nav.contact_detail.ContactDetailScreen
+import com.defense.composetestapp.ui.feature.old_nav.contact_list.ContactListScreen
 
 /**
  * First enum is first destination.

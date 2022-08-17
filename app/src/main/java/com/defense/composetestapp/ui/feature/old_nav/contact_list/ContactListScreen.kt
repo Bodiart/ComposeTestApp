@@ -1,4 +1,4 @@
-package com.defense.composetestapp.ui.feature.contact_list
+package com.defense.composetestapp.ui.feature.old_nav.contact_list
 
 import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibility
@@ -25,7 +25,7 @@ import com.defense.composetestapp.R
 import com.defense.composetestapp.ui.base.BaseView
 import com.defense.composetestapp.ui.custom.AnimatedFullScreenProgress
 import com.defense.composetestapp.ui.custom.DefaultTopBar
-import com.defense.composetestapp.ui.feature.contact_detail.ContactDetailArgs
+import com.defense.composetestapp.ui.feature.old_nav.contact_detail.ContactDetailArgs
 import com.defense.composetestapp.ui.feature.main.NavigationScreen
 import com.defense.composetestapp.ui.theme.Shapes
 import com.defense.composetestapp.ui.theme.Typography
@@ -42,7 +42,7 @@ class ContactListScreen : BaseView<
 
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     @Composable
-    override fun Content(state: ContactListViewState) {
+    override fun Content(state: ContactListViewState, navController: NavController) {
         Scaffold(
             topBar = {
                  DefaultTopBar(

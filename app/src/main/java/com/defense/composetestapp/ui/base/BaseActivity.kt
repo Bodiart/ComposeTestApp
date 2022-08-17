@@ -50,7 +50,9 @@ abstract class BaseActivity<
     @Composable
     protected fun DefaultPreview() {
         val viewModel = getViewModelInstance()
-        Content(viewModel.viewStateFlow.collectAsState().value)
+        viewModel.viewStateFlow.collectAsState().value?.let {
+            Content(it)
+        }
     }
 
     @Composable
@@ -78,6 +80,8 @@ abstract class BaseActivity<
 
     @Composable
     private fun ScreenRoot() {
-        Content(viewModel.viewStateFlow.collectAsState().value)
+        viewModel.viewStateFlow.collectAsState().value?.let {
+            Content(it)
+        }
     }
 }

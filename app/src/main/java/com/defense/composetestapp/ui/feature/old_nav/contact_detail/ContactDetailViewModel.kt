@@ -1,4 +1,4 @@
-package com.defense.composetestapp.ui.feature.contact_detail
+package com.defense.composetestapp.ui.feature.old_nav.contact_detail
 
 import androidx.lifecycle.SavedStateHandle
 import com.defense.composetestapp.data.usecase.ContactGetUseCase
@@ -11,7 +11,7 @@ import javax.inject.Inject
 class ContactDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     contactGetUseCase: ContactGetUseCase
-) : BaseViewModel<ContactDetailViewState, ContactDetailViewEvent, ContactDetailViewAction>() {
+) : BaseViewModel<ContactDetailViewState, ContactDetailViewEvent, ContactDetailViewAction>(savedStateHandle) {
 
     private val args = ContactDetailArgs(
         requireNotNull(
@@ -25,14 +25,13 @@ class ContactDetailViewModel @Inject constructor(
 
 
     init {
+        mutableViewStateFlow.value = ContactDetailViewState(
+            title = "",
+            imageUrl = null,
+            email = "",
+            name = ""
+        )
     }
-
-    override fun createInitialState() = ContactDetailViewState(
-        title = "",
-        imageUrl = null,
-        email = "",
-        name = ""
-    )
 
     override fun handleAction(action: ContactDetailViewAction) {
     }

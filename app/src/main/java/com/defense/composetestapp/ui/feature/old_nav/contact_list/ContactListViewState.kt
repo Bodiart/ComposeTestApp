@@ -1,4 +1,4 @@
-package com.defense.composetestapp.ui.feature.contact_list
+package com.defense.composetestapp.ui.feature.old_nav.contact_list
 
 import androidx.annotation.StringRes
 import com.defense.composetestapp.ui.base.ViewState

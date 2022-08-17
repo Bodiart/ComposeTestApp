@@ -1,4 +1,4 @@
-package com.defense.composetestapp.ui.feature.contact_list
+package com.defense.composetestapp.ui.feature.old_nav.contact_list
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
@@ -8,29 +8,28 @@ import com.defense.composetestapp.data.usecase.ContactsGetUseCase
 import com.defense.composetestapp.ui.base.BaseViewModel
 import com.defense.composetestapp.util.extensions.process
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ContactListViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle,
     private val contactsGetUseCase: ContactsGetUseCase
 ) : BaseViewModel<
         ContactListViewState,
         ContactListViewEvent,
         ContactListViewAction
->() {
+>(savedStateHandle) {
 
     private var contactList = listOf<Contact>()
 
     init {
+        mutableViewStateFlow.value = ContactListViewState(
+            titleResId = R.string.contact_list_title,
+            contactListState = ContactListViewState.ContactListState.Loading
+        )
         setupContactList()
     }
-
-    override fun createInitialState() = ContactListViewState(
-        titleResId = R.string.contact_list_title,
-        contactListState = ContactListViewState.ContactListState.Loading
-    )
 
     override fun handleAction(action: ContactListViewAction) {
         when (action) {

@@ -1,4 +1,4 @@
-package com.defense.composetestapp.ui.feature.contact_detail
+package com.defense.composetestapp.ui.feature.old_nav.contact_detail
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Scaffold
@@ -12,6 +12,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.defense.composetestapp.R
 import com.defense.composetestapp.ui.base.BaseView
@@ -29,18 +30,20 @@ class ContactDetailScreen : BaseView<
 
     @Composable
     override fun Content(
-        state: ContactDetailViewState
+        state: ContactDetailViewState,
+        navController: NavController
     ) {
 
         Scaffold(
             topBar = {
                 DefaultTopBar(
                     title = state.title,
-                    navigationIconClicked = { navController.popBackStack() }
+                    navigationIconClicked = { navController.navigateUp() }
                 )
             },
             content = {
-                ScreenContent(state, viewModel)
+                it
+                ScreenContent(state)
             }
         )
     }

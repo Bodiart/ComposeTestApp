@@ -3,7 +3,6 @@ package com.defense.composetestapp.ui.base
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.navigation.NavController
 import kotlinx.coroutines.flow.collectLatest
 
@@ -33,7 +32,7 @@ abstract class BaseView<
     protected abstract fun getViewModelInstance(): VM
 
     @Composable
-    protected abstract fun Content(state: VS)
+    protected abstract fun Content(state: VS, navController: NavController)
 
     protected abstract fun handleEvent(event: VE)
 
@@ -44,7 +43,9 @@ abstract class BaseView<
     @Composable
     protected fun DefaultPreview() {
         val viewModel = getViewModelInstance()
-        Content(viewModel.viewStateFlow.collectAsState().value)
+        viewModel.viewStateFlow.collectAsState().value?.let {
+            Content(it, navController)
+        }
     }
 
     @Composable
@@ -58,7 +59,8 @@ abstract class BaseView<
 
     @Composable
     private fun ScreenRoot() {
-        val viewState by viewModel.viewStateFlow.collectAsState()
-        Content(viewState)
+        viewModel.viewStateFlow.collectAsState().value?.let {
+            Content(it, navController)
+        }
     }
 }
