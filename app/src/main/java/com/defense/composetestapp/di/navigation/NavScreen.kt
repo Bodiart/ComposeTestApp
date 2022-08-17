@@ -3,6 +3,7 @@ package com.defense.composetestapp.di.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.NamedNavArgument
 import java.lang.StringBuilder
+import java.net.URLDecoder
 
 
 abstract class NavScreen {
@@ -67,4 +68,24 @@ interface ScreenDescription {
     fun argsNames(): List<NamedNavArgument>
 
     fun buildRouteWithPlaceholders(): String
+}
+
+
+
+
+
+
+abstract class NavScreen2 <T> {
+
+    protected abstract fun routeRoot(): String
+
+    protected abstract fun argNames(): List<NamedNavArgument>
+
+    fun routeWithPlaceholders() = buildRouteWithArgPlaceholders(routeRoot(), argNames())
+
+    fun routeWithArgs(args: T) = buildRouteWithArgs(routeRoot(), argNames(), deserializeArgs(args))
+}
+
+fun <T> deserializeArgs(args: T): List<Any?> {
+    URLDecoder.decode()
 }

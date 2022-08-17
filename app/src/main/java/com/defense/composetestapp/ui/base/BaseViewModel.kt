@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavArgs
 import androidx.navigation.NavArgsLazy
+import com.defense.composetestapp.di.navigation.NavScreen
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -29,6 +30,8 @@ abstract class BaseViewModel<VS : ViewState, VE : ViewEvent, VA : ViewAction>(
 
     protected val actionChannel = Channel<VA>(Channel.BUFFERED) // Channel - all events should be posted, old and new ones, one subscriber
 
+    private val routeMutableFlow = Channel<String?>()
+    val routeFlow = routeMutableFlow.receiveAsFlow()
 
     init {
         viewModelScope.launch {
