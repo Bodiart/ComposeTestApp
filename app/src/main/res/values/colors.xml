@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="text_primary">#000000</color>
     <color name="text_secondary">#FFFFFFFF</color>
+    <color name="full_screen_progress_bg">#CCFFFFFF</color>
+    <color name="image_item_bg">#ECECEC</color>
+    <color name="bg">#FFFFFF</color>
 </resources>
