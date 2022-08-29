@@ -12,7 +12,8 @@ data class ImageListViewState(
 
         data class Image(
             override val id: String,
-            val imageUrl: String?
+            val imageUrl: String?,
+            val counter: String
         ) : Item()
 
         class Loader(override val id: String) : Item()

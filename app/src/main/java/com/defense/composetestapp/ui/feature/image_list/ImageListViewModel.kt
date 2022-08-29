@@ -49,7 +49,7 @@ class ImageListViewModel @Inject constructor(
     }
 
     private fun handlePaginationStateChanged(state: PaginationState<ImageData>) {
-        println("state=$state")
+        println("ImageListViewModel state=$state")
         updateState { copy(isLoadingVisible = state is PaginationState.LoadMore) }
         when (state) {
             is PaginationState.DataLoaded -> refreshImageList()
@@ -69,7 +69,8 @@ class ImageListViewModel @Inject constructor(
         return data.imageList.map {
             ImageListViewState.Item.Image(
                 it.id,
-                it.url
+                it.url,
+                it.counter.toString()
             )
         }
     }

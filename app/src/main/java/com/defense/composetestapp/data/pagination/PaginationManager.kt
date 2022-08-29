@@ -1,5 +1,7 @@
 package com.defense.composetestapp.data.pagination
 
+import com.defense.composetestapp.util.extensions.process
+
 
 class PaginationManager<Key, Data>(
     private val config: PaginationConfig,
@@ -12,11 +14,10 @@ class PaginationManager<Key, Data>(
     var currentData: Data? = null
         private set
     private var currentKey = initialKey
-    private var prevPageData: Data? = null
 
     suspend fun start() {
         currentKey = initialKey
-        prevPageData = null
+        currentData = null
         loadData(firstLoad = true)
     }
 
@@ -34,20 +35,19 @@ class PaginationManager<Key, Data>(
         firstLoad: Boolean = false
     ) {
         setState(PaginationState.LoadMore(firstLoad))
-        when (val result = source.load(params)) {
-            is LoadResult.Data -> {
+        source.load(params).process(
+            successFunction = { result ->
                 currentKey = result.nextKey
                 currentData = result.allData
-                prevPageData = result.onlyPageData
                 setState(PaginationState.DataLoaded(result.allData, result.onlyPageData))
+            },
+            failureFunction = {
+                setState(PaginationState.LoadError(it))
             }
-            is LoadResult.Error -> {
-                setState(PaginationState.LoadError(result.throwable))
-            }
-        }
+        )
     }
 
-    private fun getLoadParams() = LoadParams(currentKey, config.itemsPerPage, prevPageData)
+    private fun getLoadParams() = LoadParams(currentKey, config.itemsPerPage, currentData)
 
     private fun setState(state: PaginationState<Data>) {
         currentState = state
