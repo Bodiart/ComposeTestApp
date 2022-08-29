@@ -15,7 +15,7 @@ class PaginationManager<Key, Data>(
         private set
     private var currentKey = initialKey
 
-    suspend fun start() {
+    suspend fun initializePagination() {
         currentKey = initialKey
         currentData = null
         loadData(firstLoad = true)

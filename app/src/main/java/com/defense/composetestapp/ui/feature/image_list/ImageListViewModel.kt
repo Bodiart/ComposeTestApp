@@ -36,7 +36,7 @@ class ImageListViewModel @Inject constructor(
         )
 
         viewModelScope.launch {
-            paginationManager.start()
+            paginationManager.initializePagination()
         }
     }
 
