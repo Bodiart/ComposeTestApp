@@ -8,9 +8,9 @@ import java.net.URLEncoder
 
 const val ARG_JSON_ENCODING = "UTF-8"
 
-abstract class NavDestination<T : NavArgs>(private val clazz: Class<T>) {
+abstract class NavDestination<T : NavArgs>(val clazz: Class<T>) {
 
-    protected open fun route(): String = this::class.java.name
+    open fun route(): String = this::class.java.name
 
     fun argNames(): List<NamedNavArgument> = if (clazz is NoArgs) {
         listOf()
@@ -48,7 +48,7 @@ interface NavArgs
  */
 interface NoArgs : NavArgs
 
-private fun serializeJsonForUrl(json: String): String =
+fun serializeJsonForUrl(json: String): String =
         URLEncoder.encode(json, ARG_JSON_ENCODING)
 
 fun deserializeJsonFromUrl(urlJson: String): String =

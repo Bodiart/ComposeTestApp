@@ -5,6 +5,7 @@ import com.defense.composetestapp.ui.base.BaseViewModel
 import com.defense.composetestapp.ui.feature.featureb.FeatureBArgs
 import com.defense.composetestapp.ui.feature.main.MainDestination
 import com.defense.composetestapp.ui.navigation.NavAction
+import com.defense.composetestapp.ui.navigation.NavRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -21,14 +22,16 @@ class FeatureAViewModel @Inject constructor(
         when (action) {
             Button1ClickedAction -> navigate(
                 NavAction.Navigate(
-                    MainDestination.FeatureB.routeWithArguments(
+                    NavRoute(
+                        MainDestination.FeatureB,
                         FeatureBArgs("button 1")
                     )
                 )
             )
             Button2ClickedAction -> navigate(
                 NavAction.Navigate(
-                    MainDestination.FeatureB.routeWithArguments(
+                    NavRoute(
+                        MainDestination.FeatureB,
                         FeatureBArgs("button 2")
                     )
                 )

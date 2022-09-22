@@ -57,7 +57,7 @@ fun <
 
 fun NavController.navigate(navAction: NavAction) {
     when (navAction) {
-        is NavAction.Navigate -> navigate(navAction.route)
+        is NavAction.Navigate -> navigate(navAction.route.routeWithArguments())
         NavAction.PopBackStack -> popBackStack()
         NavAction.NavigateUp -> navigateUp()
     }
